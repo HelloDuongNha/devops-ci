@@ -111,10 +111,12 @@ app.delete('/api/students/:id', (req, res) => {
   res.json(deleted[0]);
 });
 
-// Start server
-app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port}`);
-  console.log('📚 API: GET /api/students');
-});
+// Start server only when run directly (prevents starting during tests)
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`✅ Server running at http://localhost:${port}`);
+    console.log('📚 API: GET /api/students');
+  });
+}
 
 module.exports = app;
